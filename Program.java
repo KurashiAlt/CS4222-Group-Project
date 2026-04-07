@@ -12,6 +12,7 @@ public class Program
     public static void _start()
     {
         DrawingSystem._start();
+        TestingField._start();
         
         lastTime = System.nanoTime();
         GameLoop();
@@ -19,6 +20,7 @@ public class Program
     
     public static void _stop() {
         DrawingSystem._stop();
+        TestingField._stop();
         System.exit(0);
     }
 
@@ -36,13 +38,9 @@ public class Program
         SwingUtilities.invokeLater(Program::GameLoop);
     }
     
-    static double RunTime = 0;
     public static void Process(double delta)
     {
-        RunTime += delta;
-        if (RunTime > 10.0)
-            isRunning = false;
-        
         DrawingSystem._process(delta);
+        TestingField._process(delta);
     }
 }
