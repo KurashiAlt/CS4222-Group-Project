@@ -29,11 +29,8 @@ public class gun_system
     public static void shoot(){
          Bullet bullet = weapon.shoot(); 
          if(bullet != null){
-         
-         Position pos = new Position();
-         pos.X= bullet.getX();
-         pos.Y= bullet.getY();
-         DrawingSystem.ConnectBullet(pos);
+            bullets.add(bullet);
+         DrawingSystem.ConnectBullet(bullet.getPosition());
         }
         
     }
@@ -48,13 +45,13 @@ public class gun_system
     }
         private static void checkCollisions(){
             Enemy[] enemies = EnemySystem.GetEnemies();
-                for(Bullet bullet : bullets){
-                    for(Enemy enemy : enemies){
+               for(Bullet bullet : bullets){
+                   for(Enemy enemy : enemies){
                         if(enemy.isAlive() && enemy.collidesWith(bullet.getX(),bullet.getY()))
-                        {EnemySystem.KillEnemy(enemy);
-                            bullet.deactivate();
+                       {EnemySystem.KillEnemy(enemy);
+                            bullet.notAlive();
                     }
-                }
+               }
         }
     }
 }
