@@ -25,11 +25,18 @@ public class gun_system
     public static void moveRight(){
         weapon.Right(SCREEN_WIDTH);
     }
+    public static void moveUp(){
+        weapon.moveUp(GUN_HEIGHT);
+    }
+    public static void moveDown(){
+        weapon.moveDown(SCREEN_HEIGHT, GUN_HEIGHT);
+    }
     //AI to integrate
     public static void shoot(){
          Bullet bullet = weapon.shoot(); 
          if(bullet != null){
             bullets.add(bullet);
+            SoundSystem.PlayShoot();
          DrawingSystem.ConnectBullet(bullet.getPosition());
         }
         
@@ -47,7 +54,8 @@ public class gun_system
             Enemy[] enemies = EnemySystem.GetEnemies();
                for(Bullet bullet : bullets){
                    for(Enemy enemy : enemies){
-                        if(enemy.isAlive() && enemy.collidesWith(bullet.getX(),bullet.getY()))
+                        if(enemy.isAlive() && enemy.collidesWith(bullet.getPosition(),
+                        enemy.getPosition(),enemy.getWidth,enemy.getHeight()))
                        {EnemySystem.KillEnemy(enemy);
                             bullet.notAlive();
                     }

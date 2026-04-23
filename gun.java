@@ -24,8 +24,20 @@ public class gun
             if(pos.X> screenWidth)
             {pos.X = screenWidth;}
         }
-        public Bullet shoot()
-        {
+        public void moveUp(int gunHeight){
+            pos.Y = pos.Y- speed;
+            if (pos.Y < gunHeight+10){
+                pos.Y = gunHeight+10;
+            }
+        }
+        public void moveDown(int screenHeight,int gunHeight){
+            pos.Y = pos.Y + speed;
+            if(pos.Y > screenHeight-gunHeight){
+                pos.Y = screenHeight-gunHeight;
+            }
+        }
+        
+        public Bullet shoot(){
             long currentTime = System.currentTimeMillis();
             if (currentTime - lastShot >= fireRate){
                 lastShot = currentTime;
