@@ -9,8 +9,10 @@ public class TestingField
     public static int StartY = -100;
     public static int StopY = 1100;
     public static List<TestEnemy> TestEnemies = new ArrayList<TestEnemy>();
+    public static boolean IsEnabled = false;
     
     public static void _start() {
+        if (!IsEnabled) return;
         Random r = new Random();
         
         for (int i = 0; i < EnemyCount; i++) {
@@ -26,6 +28,7 @@ public class TestingField
         }
     }
     public static void _process(double delta) {
+        if (!IsEnabled) return;
         for (TestEnemy enemy : TestEnemies) {
             enemy.position.Y += EnemySpeed * delta;
             if (enemy.position.Y > StopY){

@@ -2,10 +2,21 @@ import javax.swing.*;
 
 public class Program
 {
+    public static JFrame frame;
     public static void _start()
     {
-        TestingField._start();
+        frame = new JFrame("Basic Swing Window");
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.setSize(800, 600);
+        frame.setResizable(false);
+        
         DrawingSystem._start();
+        InputSystem._start();
+        gun_system._start();
+        TestingField._start();
+        
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
         
         lastTime = System.nanoTime();
         GameLoop();
@@ -13,13 +24,18 @@ public class Program
     
     public static void _stop() {
         TestingField._stop();
+        InputSystem._stop();
         DrawingSystem._stop();
+        
+        frame.dispose();
     }
     
     public static void _process(double delta)
     {
-        TestingField._process(delta);
         DrawingSystem._process(delta);
+        InputSystem._process(delta);
+        gun_system._process(delta);
+        TestingField._process(delta);
     }
     
     static Boolean isRunning = true;
