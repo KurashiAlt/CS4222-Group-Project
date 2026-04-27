@@ -24,6 +24,7 @@ public class gun_system
         checkCollisions();
         
         Vector2 moveDir = InputSystem.GetInputVector();
+        moveDir.Normalize();
         weapon.Move(moveDir, delta, SCREEN_WIDTH, SCREEN_HEIGHT, GUN_HEIGHT);
     }
     
@@ -53,11 +54,11 @@ public class gun_system
             for(Enemy enemy : enemies) {
                  if(
                      enemy.isAlive() &&
-                     collisionDetect.collidesWith(
+                     collisionDetect.CollidesWithVec(
                         bullet.getPosition(),
+                        bullet.getSize(),
                         enemy.getPosition(),
-                        50,
-                        50
+                        enemy.getSize()
                     )
                 ) {
                     EnemySystem.killEnemy(enemy);

@@ -1,5 +1,5 @@
 public class Enemy {
-
+    private static Vector2 size = new Vector2(50, 50);
     private Vector2 position;
     private Vector2 velocity;
     private boolean alive;
@@ -17,9 +17,8 @@ public class Enemy {
         position.y += velocity.y * delta;
     }
 
-    public Vector2 getPosition() {
-        return position;
-    }
+    public Vector2 getPosition() { return position; }
+    public static Vector2 getSize() { return size; }
 
     public boolean isAlive() {
         return alive;

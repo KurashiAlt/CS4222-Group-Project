@@ -19,6 +19,25 @@ public class Vector2 {
         if (y < minY) y = minY;
         if (y > maxY) y = maxY;
     }
+    
+    public void Normalize() {
+        double length = Math.sqrt(x * x + y * y);
+        
+        if (length != 0) {
+            x /= length;
+            y /= length;
+        }
+    }
+    
+    public Vector2 Normalized() {
+        double length = Math.sqrt(x * x + y * y);
+
+        if (length == 0) {
+            return new Vector2(0, 0);
+        }
+    
+        return new Vector2(x / length, y / length);
+    }
 
     public Vector2 copy() {
         return new Vector2(x, y);

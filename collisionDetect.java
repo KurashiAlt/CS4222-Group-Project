@@ -11,4 +11,14 @@ public class collisionDetect
                bulletPos.y >= enemyPos.y &&
                bulletPos.y <= enemyPos.y + height;
     }
+    
+    public static boolean CollidesWithVec(
+        Vector2 positionA, Vector2 sizeA,
+        Vector2 positionB, Vector2 sizeB
+    ) {
+        return positionA.x < positionB.x + sizeB.x &&
+               positionA.x + sizeA.x > positionB.x &&
+               positionA.y < positionB.y + sizeB.y &&
+               positionA.y + sizeA.y > positionB.y;
+    }
 }

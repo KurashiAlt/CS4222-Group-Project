@@ -50,14 +50,16 @@ public class DrawingSystem
         
             // --- Bullets (ORANGE) ---
             g2.setColor(Color.ORANGE);
+            Vector2 bulletSize = Bullet.getSize();
             for (Vector2 p : Bullets) {
-                g2.fillRect((int)p.x, (int)p.y, 50, 50);
+                g2.fillRect((int)p.x, (int)p.y, (int)bulletSize.x, (int)bulletSize.y);
             }
         
             // --- Enemies (RED) ---
             g2.setColor(Color.RED);
+            Vector2 enemySize = Enemy.getSize();
             for (Vector2 p : Enemies) {
-                g2.fillRect((int)p.x, (int)p.y, 50, 50);
+                g2.fillRect((int)p.x, (int)p.y, (int)enemySize.x, (int)enemySize.y);
             }
         }
     }
