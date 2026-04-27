@@ -20,21 +20,11 @@ public class gun_system
     }
 
     public static void _process(double delta){
-        updateBullets();
+        updateBullets(delta);
         checkCollisions();
-    }
         
-    public static void moveLeft(){
-        weapon.Left();
-    }
-    public static void moveRight(){
-        weapon.Right(SCREEN_WIDTH);
-    }
-    public static void moveUp(){
-        weapon.moveUp(GUN_HEIGHT);
-    }
-    public static void moveDown(){
-        weapon.moveDown(SCREEN_HEIGHT, GUN_HEIGHT);
+        Vector2 moveDir = InputSystem.GetInputVector();
+        weapon.Move(moveDir, delta, SCREEN_WIDTH, SCREEN_HEIGHT, GUN_HEIGHT);
     }
     
     //AI to integrate
@@ -47,10 +37,10 @@ public class gun_system
         }
         
     }
-    private static void updateBullets(){
+    private static void updateBullets(double delta){
         for(int i = bullets.size() - 1; i >= 0; i = i - 1) {
             Bullet bullet = bullets.get(i);
-            bullet.update();
+            bullet.update(delta);
             if (!bullet.isAlive()) {
                 DrawingSystem.DisconnectBullet(bullet.getPosition());
                 bullets.remove(i);

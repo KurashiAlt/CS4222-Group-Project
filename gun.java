@@ -7,35 +7,18 @@ public class gun
     public gun(int screenWidth, int screenHeight, int gunHeight)
     {
         pos = new Vector2(screenWidth / 2, screenHeight - gunHeight);
-        speed = 10;
+        speed = 100;
         fireRate = 500;
         lastShot = 0;
     }
     
-    public void Left()
+    public void Move(Vector2 dir, double delta, int screenWidth, int screenHeight, int gunHeight)
     {
-        pos.x = pos.x - speed;
-        if (pos.x < 0) {
-            pos.x = 0;
-        }
-    }
-    public void Right(int screenWidth){
-        pos.x = pos.x + speed;
-        if(pos.x > screenWidth) {
-            pos.x = screenWidth;
-        }
-    }
-    public void moveUp(int gunHeight){
-        pos.y = pos.y - speed;
-        if (pos.y < gunHeight + 10) {
-            pos.y = gunHeight + 10;
-        }
-    }
-    public void moveDown(int screenHeight,int gunHeight){
-        pos.y = pos.y + speed;
-        if(pos.y > screenHeight - gunHeight){
-            pos.y = screenHeight - gunHeight;
-        }
+        pos.x += dir.x * delta * speed;
+        pos.y += dir.y * delta *  speed;
+        System.out.println(dir.x);
+        
+        pos.Clamp(0, screenWidth, gunHeight + 10, screenHeight - gunHeight);
     }
     
     public Bullet shoot(){

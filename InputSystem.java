@@ -3,40 +3,45 @@ import java.awt.event.*;
 
 public class InputSystem
 {
+    public static boolean[] PressedKeys = new boolean[] { false, false, false, false };
+    
+    public static Vector2 GetInputVector() {
+        double x = 0;
+        if (PressedKeys[0]) x -= 1;
+        if (PressedKeys[1]) x += 1;
+        double y = 0;
+        if (PressedKeys[2]) y -= 1;
+        if (PressedKeys[3]) y += 1;
+        return new Vector2(x, y);
+    }
+    
+    private static void CreateInputDir(InputMap inputMap, ActionMap actionMap, String baseKey, int index) {
+        inputMap.put(KeyStroke.getKeyStroke("pressed " + baseKey), "Pressed" + baseKey);
+        inputMap.put(KeyStroke.getKeyStroke("released " + baseKey), "Released" + baseKey);
+        actionMap.put("Pressed" + baseKey, new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PressedKeys[index] = true;
+            }
+        });
+        actionMap.put("Released" + baseKey, new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PressedKeys[index] = false;
+            }
+        });
+    }
+    
     public static void _start() {
         InputMap inputMap = DrawingSystem.panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap actionMap = DrawingSystem.panel.getActionMap();
         
-        inputMap.put(KeyStroke.getKeyStroke("A"), "moveLeft");
-        inputMap.put(KeyStroke.getKeyStroke("D"), "moveRight");
-        inputMap.put(KeyStroke.getKeyStroke("W"), "moveUp");
-        inputMap.put(KeyStroke.getKeyStroke("S"), "moveDown");
+        CreateInputDir(inputMap, actionMap, "A", 0);
+        CreateInputDir(inputMap, actionMap, "D", 1);
+        CreateInputDir(inputMap, actionMap, "W", 2);
+        CreateInputDir(inputMap, actionMap, "S", 3);
         inputMap.put(KeyStroke.getKeyStroke("U"), "shoot");
-
-        actionMap.put("moveLeft", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gun_system.moveLeft();
-            }
-        });
-        actionMap.put("moveRight", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gun_system.moveRight();
-            }
-        });
-        actionMap.put("moveUp", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gun_system.moveUp();
-            }
-        });
-        actionMap.put("moveDown", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gun_system.moveDown();
-            }
-        });
+        
         actionMap.put("shoot", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
