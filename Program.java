@@ -10,6 +10,7 @@ public class Program
         frame.setSize(800, 600);
         frame.setResizable(false);
         
+        GameMain._start();
         DrawingSystem._start();
         InputSystem._start();
         gun_system._start();
@@ -28,10 +29,12 @@ public class Program
         DrawingSystem._stop();
         
         frame.dispose();
+        System.exit(0);
     }
     
     public static void _process(double delta)
     {
+        GameMain._process(delta);
         DrawingSystem._process(delta);
         InputSystem._process(delta);
         gun_system._process(delta);

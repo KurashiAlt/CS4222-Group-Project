@@ -43,7 +43,13 @@ public class InputSystem
                 gun_system.shoot();
             }
         });
-
+        
+        Program.frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                Program.isRunning = false;
+            }
+        });
     }
     public static void _stop() { }
     public static void _process(double delta) { }

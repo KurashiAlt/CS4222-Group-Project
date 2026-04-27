@@ -9,17 +9,11 @@ public class DrawingSystem
     
     public static void _start() {
         panel = new GamePanel();
-        Program.frame.add(panel);
-        
-        Program.frame.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent e) {
-                Program.isRunning = false;
-            }
-        });
     }
     public static void _process(double delta) {
-        panel.repaint();
+        if (GameMain.currentPanel == panel) {
+            panel.repaint();
+        }
     }
     public static void _stop() { }
     
@@ -32,6 +26,10 @@ public class DrawingSystem
     public static void DisconnectBullet(Position position) { Bullets.remove(position); }
     public static void ConnectEnemy(Position position) { Enemies.add(position); }
     public static void DisconnectEnemy(Position position) { Enemies.remove(position); }
+    
+    public static JPanel GetGameMenu() {
+        return panel;
+    }
     
     public static class GamePanel extends JPanel {
         public GamePanel() {

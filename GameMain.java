@@ -4,45 +4,27 @@ import java.awt.event.*;
 
 public class GameMain {
 
-    private JFrame window;
-    private JPanel currentPanel;
-    private long lastTime;
+    private static JFrame window;
+    public static JPanel currentPanel;
+    private static long lastTime;
 
-    private JLabel titleLabel;
+    private static JLabel titleLabel;
 
-    public static void main(String[] args) {
-        GameMain game = new GameMain();
-        game._start();
-    }
-    public void _start() {
-        window = new JFrame("Animated Start Menu");
-        window.setSize(600, 400);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setResizable(false);
+    public static void _start() {
+        window = Program.frame;
 
         currentPanel = GetMenu();
         window.add(currentPanel);
-
-        window.setVisible(true);
-
-        lastTime = System.nanoTime();
-        Timer timer = new Timer(16, e -> 
-        {
-            long now = System.nanoTime();
-            double delta = (now - lastTime) / 1_000_000_000.0;
-            lastTime = now;
-            _process(delta);
-        });
-        timer.start();
     }
 
 
-    public void _process(double delta) {
-        
+    public static void _process(double delta) {
+        long now = System.nanoTime();
+        lastTime = now;
     }
 
     
-    public JPanel GetMenu() {
+    public static JPanel GetMenu() {
         JPanel menu = new JPanel();
         menu.setLayout(new BorderLayout());
 
@@ -60,9 +42,9 @@ public class GameMain {
         JButton tutorialBtn = makeStyledButton("Tutorial");
         JButton quitBtn = makeStyledButton("Quit");
 
-        startBtn.addActionListener(e -> showMessage("Game would start here"));
+        startBtn.addActionListener(e -> switchPanel(DrawingSystem.GetGameMenu()));
         tutorialBtn.addActionListener(e -> showTutorial());
-        quitBtn.addActionListener(e -> System.exit(0));
+        quitBtn.addActionListener(e -> Program.isRunning = false);
 
         buttons.add(startBtn);
         buttons.add(tutorialBtn);
@@ -74,7 +56,7 @@ public class GameMain {
     }
 
     
-    private JButton makeStyledButton(String text) {
+    private static JButton makeStyledButton(String text) {
         JButton btn = new JButton(text);
 
         btn.setFocusPainted(false);
@@ -104,7 +86,7 @@ public class GameMain {
     // -------------------------------
     // Tutorial Screen
     // -------------------------------
-    public void showTutorial() {
+    public static void showTutorial() {
         JPanel tutorial = new JPanel();
         tutorial.setLayout(new BorderLayout());
 
@@ -135,7 +117,7 @@ public class GameMain {
     }
 
     
-    private void switchPanel(JPanel newPanel) {
+    private static void switchPanel(JPanel newPanel) {
         window.remove(currentPanel);
         currentPanel = newPanel;
         window.add(currentPanel);
@@ -144,7 +126,7 @@ public class GameMain {
     }
 
     
-    private void showMessage(String msg) {
+    private static void showMessage(String msg) {
         JOptionPane.showMessageDialog(window, msg);
     }
 }
