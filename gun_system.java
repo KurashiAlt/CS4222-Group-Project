@@ -15,8 +15,8 @@ public class gun_system
 
     public static void _start(){
         SpawnGun();
-        System.out.println(weapon.getPosition().X);
-        System.out.println(weapon.getPosition().Y);
+        System.out.println(weapon.getPosition().x);
+        System.out.println(weapon.getPosition().y);
     }
 
     public static void _process(double delta){
@@ -51,20 +51,29 @@ public class gun_system
         for(int i = bullets.size() - 1; i >= 0; i = i - 1) {
             Bullet bullet = bullets.get(i);
             bullet.update();
-            if(!bullet.isAlive()){
+            if (!bullet.isAlive()) {
+                DrawingSystem.DisconnectBullet(bullet.getPosition());
                 bullets.remove(i);
             }
         }
     }
     private static void checkCollisions(){
-        //Enemy[] enemies = EnemySystem.GetEnemies();
-        //for(Bullet bullet : bullets){
-        //    for(Enemy enemy : enemies) {
-        //         if(enemy.isAlive() && enemy.collidesWith(bullet.getPosition(),
-        //         enemy.getPosition(),enemy.getWidth,enemy.getHeight()))
-        //        {EnemySystem.KillEnemy(enemy);
-        //             bullet.notAlive();
-        //     }
-        //}
+        Enemy[] enemies = EnemySystem.getEnemies();
+        for(Bullet bullet : bullets){
+            for(Enemy enemy : enemies) {
+                 if(
+                     enemy.isAlive() &&
+                     collisionDetect.collidesWith(
+                        bullet.getPosition(),
+                        enemy.getPosition(),
+                        50,
+                        50
+                    )
+                ) {
+                    EnemySystem.killEnemy(enemy);
+                    bullet.notAlive();
+                }
+             }
+        }
     }
 }

@@ -1,14 +1,12 @@
 public class gun
 { 
-    private Position pos;
+    private Vector2 pos;
     private int speed;
     private long lastShot;
     private int fireRate;
     public gun(int screenWidth, int screenHeight, int gunHeight)
     {
-        pos = new Position();
-        pos.X = screenWidth / 2;
-        pos.Y = screenHeight - gunHeight;
+        pos = new Vector2(screenWidth / 2, screenHeight - gunHeight);
         speed = 10;
         fireRate = 500;
         lastShot = 0;
@@ -16,27 +14,27 @@ public class gun
     
     public void Left()
     {
-        pos.X = pos.X - speed;
-        if (pos.X < 0) {
-            pos.X = 0;
+        pos.x = pos.x - speed;
+        if (pos.x < 0) {
+            pos.x = 0;
         }
     }
     public void Right(int screenWidth){
-        pos.X = pos.X + speed;
-        if(pos.X > screenWidth) {
-            pos.X = screenWidth;
+        pos.x = pos.x + speed;
+        if(pos.x > screenWidth) {
+            pos.x = screenWidth;
         }
     }
     public void moveUp(int gunHeight){
-        pos.Y = pos.Y - speed;
-        if (pos.Y < gunHeight + 10) {
-            pos.Y = gunHeight + 10;
+        pos.y = pos.y - speed;
+        if (pos.y < gunHeight + 10) {
+            pos.y = gunHeight + 10;
         }
     }
     public void moveDown(int screenHeight,int gunHeight){
-        pos.Y = pos.Y + speed;
-        if(pos.Y > screenHeight - gunHeight){
-            pos.Y = screenHeight - gunHeight;
+        pos.y = pos.y + speed;
+        if(pos.y > screenHeight - gunHeight){
+            pos.y = screenHeight - gunHeight;
         }
     }
     
@@ -44,14 +42,12 @@ public class gun
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastShot >= fireRate){
             lastShot = currentTime;
-            Position bulletPos = new Position();
-            bulletPos.X = pos.X;
-            bulletPos.Y = pos.Y;
+            Vector2 bulletPos = new Vector2(pos.x, pos.y);
             return new Bullet(bulletPos);
         }
         return null;
     }
-    public Position getPosition(){
+    public Vector2 getPosition(){
         return pos;
     }
 }

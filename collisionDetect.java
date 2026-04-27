@@ -1,14 +1,14 @@
 public class collisionDetect
 {
     public static boolean collidesWith(
-            Position bulletPos,
-            Position enemyPos,
+            Vector2 bulletPos,
+            Vector2 enemyPos,
             int width,
             int height)
     {
-        return bulletPos.X >= enemyPos.X &&
-               bulletPos.X <= enemyPos.X + width &&
-               bulletPos.Y >= enemyPos.Y &&
-               bulletPos.Y <= enemyPos.Y + height;
+        return bulletPos.x >= enemyPos.x &&
+               bulletPos.x <= enemyPos.x + width &&
+               bulletPos.y >= enemyPos.y &&
+               bulletPos.y <= enemyPos.y + height;
     }
 }

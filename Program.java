@@ -14,7 +14,7 @@ public class Program
         DrawingSystem._start();
         InputSystem._start();
         gun_system._start();
-        TestingField._start();
+        EnemySystem._start();
         
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -24,7 +24,6 @@ public class Program
     }
     
     public static void _stop() {
-        TestingField._stop();
         InputSystem._stop();
         DrawingSystem._stop();
         
@@ -38,7 +37,8 @@ public class Program
         DrawingSystem._process(delta);
         InputSystem._process(delta);
         gun_system._process(delta);
-        TestingField._process(delta);
+        EnemySystem._process(delta);
+        SpawnSystem._process(delta);
     }
     
     static Boolean isRunning = true;

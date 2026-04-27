@@ -1,19 +1,19 @@
 public class Bullet
 { 
-    private Position pos;
+    private Vector2 pos;
     private int speed;
     private boolean bulletLife;
     // Where the bullet has to start and whatnot+ give it life
-    public Bullet(Position startPos){
-        pos= startPos;
+    public Bullet(Vector2 startPos){
+        pos = startPos;
         speed = 10;
         bulletLife = true;
     }
     //Each frame it moves up by the speed...also dies @ top.
     public void update()
     {
-        pos.Y = pos.Y-speed;
-        if (pos.Y<= 0){
+        pos.y = pos.y - speed;
+        if (pos.y <= 0){
             bulletLife = false;
         }
     }
@@ -24,15 +24,15 @@ public class Bullet
     {
         bulletLife = false;
     }
-    public Position getPosition(){
+    public Vector2 getPosition(){
         return pos;
     }
-    public int getX()
+    public double getX()
     {
-        return pos.X;
+        return pos.x;
     }
-    public int getY()
+    public double getY()
     {
-        return pos.Y;
+        return pos.y;
     }
 }

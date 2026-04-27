@@ -17,15 +17,15 @@ public class DrawingSystem
     }
     public static void _stop() { }
     
-    public static List<Position> Guns = new ArrayList<Position>();
-    public static List<Position> Enemies = new ArrayList<Position>();
-    public static List<Position> Bullets = new ArrayList<Position>();
-    public static void ConnectGun(Position position) { Guns.add(position); }
-    public static void DisconnectGun(Position position) { Guns.remove(position); }
-    public static void ConnectBullet(Position position) { Bullets.add(position); }
-    public static void DisconnectBullet(Position position) { Bullets.remove(position); }
-    public static void ConnectEnemy(Position position) { Enemies.add(position); }
-    public static void DisconnectEnemy(Position position) { Enemies.remove(position); }
+    public static List<Vector2> Guns = new ArrayList<Vector2>();
+    public static List<Vector2> Enemies = new ArrayList<Vector2>();
+    public static List<Vector2> Bullets = new ArrayList<Vector2>();
+    public static void ConnectGun(Vector2 position) { Guns.add(position); }
+    public static void DisconnectGun(Vector2 position) { Guns.remove(position); }
+    public static void ConnectBullet(Vector2 position) { Bullets.add(position); }
+    public static void DisconnectBullet(Vector2 position) { Bullets.remove(position); }
+    public static void ConnectEnemy(Vector2 position) { Enemies.add(position); }
+    public static void DisconnectEnemy(Vector2 position) { Enemies.remove(position); }
     
     public static JPanel GetGameMenu() {
         return panel;
@@ -44,20 +44,20 @@ public class DrawingSystem
         
             // --- Guns (WHITE) ---
             g2.setColor(Color.BLUE);
-            for (Position p : Guns) {
-                g2.fillRect(p.X, p.Y, 50, 50);
+            for (Vector2 p : Guns) {
+                g2.fillRect((int)p.x, (int)p.y, 50, 50);
             }
         
             // --- Bullets (ORANGE) ---
             g2.setColor(Color.ORANGE);
-            for (Position p : Bullets) {
-                g2.fillRect(p.X, p.Y, 50, 50);
+            for (Vector2 p : Bullets) {
+                g2.fillRect((int)p.x, (int)p.y, 50, 50);
             }
         
             // --- Enemies (RED) ---
             g2.setColor(Color.RED);
-            for (Position p : Enemies) {
-                g2.fillRect(p.X, p.Y, 50, 50);
+            for (Vector2 p : Enemies) {
+                g2.fillRect((int)p.x, (int)p.y, 50, 50);
             }
         }
     }
