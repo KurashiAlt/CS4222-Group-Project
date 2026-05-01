@@ -22,7 +22,31 @@ public class GameMain {
         long now = System.nanoTime();
         lastTime = now;
     }
+    
+    public static JPanel GetDead() {
+        JPanel menu = new JPanel();
+        menu.setLayout(new BorderLayout());
 
+        // Title 
+        titleLabel = new JLabel("You are Dead", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 48));
+        menu.add(titleLabel, BorderLayout.NORTH);
+
+        // Buttons panel
+        JPanel buttons = new JPanel();
+        buttons.setLayout(new GridLayout(3, 1, 10, 10));
+        buttons.setBorder(BorderFactory.createEmptyBorder(20, 100, 20, 100));
+        
+        JButton quitBtn = makeStyledButton("Quit");
+        
+        quitBtn.addActionListener(e -> Program.isRunning = false);
+
+        buttons.add(quitBtn);
+
+        menu.add(buttons, BorderLayout.CENTER);
+
+        return menu;
+    }
     
     public static JPanel GetMenu() {
         JPanel menu = new JPanel();
@@ -102,7 +126,7 @@ public class GameMain {
             "S - move backwards\n" +
             "U - shoot\n\n" +
             "AIM\n" +
-            "• Hit the letters (notes) to play the instrument\n" +
+            "• Hit the red boxes (notes) to play the instrument\n" +
             "• Hit the notes to avoid dying\n" +
             "• The octave of the notes depends on how high up they are when killed\n"
         );
@@ -117,7 +141,7 @@ public class GameMain {
     }
 
     
-    private static void switchPanel(JPanel newPanel) {
+    public static void switchPanel(JPanel newPanel) {
         window.remove(currentPanel);
         currentPanel = newPanel;
         window.add(currentPanel);

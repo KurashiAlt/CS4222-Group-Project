@@ -29,7 +29,6 @@ public class Enemy {
         note = note / 100;
         int octave = (int)(position.y / 100);
         int noteKey = note + (12 * octave);
-        System.out.println(noteKey);
         SoundSystem.playNote(noteKey);
         
         alive = false;

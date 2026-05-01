@@ -13,7 +13,7 @@ public class gun
         pos.x += dir.x * delta * speed;
         pos.y += dir.y * delta *  speed;
         
-        pos.Clamp(0, screenWidth, gunHeight + 10, screenHeight - gunHeight);
+        pos.Clamp(0, screenWidth - 50, gunHeight + 10, screenHeight - gunHeight);
     }
     
     public Bullet shoot(){

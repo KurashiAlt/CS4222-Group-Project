@@ -12,10 +12,8 @@ public class EnemySystem {
             Enemy enemy = enemies.get(i);
             enemy.update(delta);
             
-            if (enemy.getPosition().y >= 600){
-                SoundEffects.playEnemyNoise();
-                DrawingSystem.DisconnectEnemy(enemy.getPosition());
-                enemies.remove(i);
+            if (enemy.getPosition().y >= 700){
+                Program.KillGame();
             }
 
             if (!enemy.isAlive()) {

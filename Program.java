@@ -37,13 +37,22 @@ public class Program
         GameMain._process(delta);
         DrawingSystem._process(delta);
         InputSystem._process(delta);
-        gun_system._process(delta);
-        EnemySystem._process(delta);
-        SpawnSystem._process(delta);
+        
+        if (!isStalled) {
+            gun_system._process(delta);
+            EnemySystem._process(delta);
+            SpawnSystem._process(delta);
+        }
     }
     
     static Boolean isRunning = true;
+    static Boolean isStalled = false;
     static long lastTime;
+    
+    public static void KillGame() {
+        isStalled = true;
+        GameMain.switchPanel(GameMain.GetDead());
+    }
     
     public static void Main() {
         SwingUtilities.invokeLater(() -> { _start(); });
