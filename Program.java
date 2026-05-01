@@ -7,7 +7,7 @@ public class Program
     {
         frame = new JFrame("Basic Swing Window");
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        frame.setSize(800, 600);
+        frame.setSize(700, 600);
         frame.setResizable(false);
         
         GameMain._start();

@@ -1,5 +1,5 @@
 public class Enemy {
-    private static Vector2 size = new Vector2(50, 50);
+    public static Vector2 size = new Vector2(50, 50);
     private Vector2 position;
     private Vector2 velocity;
     private boolean alive;
