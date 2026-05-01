@@ -33,7 +33,7 @@ public class gun_system
         Bullet bullet = weapon.shoot(); 
         if (bullet != null) {
             bullets.add(bullet);
-            //SoundSystem.PlayShoot();
+            GunShotSound.playGunshot();
             DrawingSystem.ConnectBullet(bullet.getPosition());
         }
         
