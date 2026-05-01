@@ -7,9 +7,9 @@ public class SpawnSystem
         if (SpawnTimer > SPAWN_RATE) {
             SpawnTimer = 0;
             int minX = 0;
-            int maxX = 11;
+            int maxX = 10;
             
-            int randomX=minX + (int)(Math.random()*(maxX-minX));
+            int randomX= minX + (int)(Math.random() * (maxX - minX));
             EnemySystem.spawnEnemy(new Vector2(randomX * 100 + 50 - (Enemy.size.x / 2), 0));
         }
     }
