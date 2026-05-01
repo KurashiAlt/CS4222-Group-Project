@@ -15,7 +15,7 @@ public class SoundSystem {
     // -------------------------
     // INITIALIZATION
     // -------------------------
-    public static void start() {
+    public static void _start() {
         try {
             sequencer = MidiSystem.getSequencer();
             sequencer.open();

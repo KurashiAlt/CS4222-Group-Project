@@ -15,6 +15,7 @@ public class Program
         InputSystem._start();
         gun_system._start();
         EnemySystem._start();
+        SoundSystem._start();
         
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

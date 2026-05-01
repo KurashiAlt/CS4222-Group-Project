@@ -25,6 +25,13 @@ public class Enemy {
     }
 
     public void kill() {
+        int note = (int)(position.x - 50 + (Enemy.size.x / 2));
+        note = note / 100;
+        int octave = (int)(position.y / 100);
+        int noteKey = note + (12 * octave);
+        System.out.println(noteKey);
+        SoundSystem.playNote(noteKey);
+        
         alive = false;
     }
 
