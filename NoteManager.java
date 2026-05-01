@@ -1,34 +1,39 @@
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class NoteManager {
 
-    private ArrayList<Note> notes;
+    private ArrayList<NoteText> notes;
 
     public NoteManager() {
         notes = new ArrayList<>();
 
-        notes.add(new Note("A", "A.png", 100, 100));
-        notes.add(new Note("B", "B.png", 200, 100));
-        notes.add(new Note("C", "C.png", 300, 100));
-        notes.add(new Note("D", "D.png", 400, 100));
-        notes.add(new Note("E", "E.png", 500, 100));
-        notes.add(new Note("F", "F.png", 600, 100));
-        notes.add(new Note("G", "G.png", 700, 100));
+        // Create 7 notes A–G as text
+        notes.add(new NoteText("A", "A.wav", 100, 100));
+        notes.add(new NoteText("B", "B.wav", 200, 100));
+        notes.add(new NoteText("C", "C.wav", 300, 100));
+        notes.add(new NoteText("D", "D.wav", 400, 100));
+        notes.add(new NoteText("E", "E.wav", 500, 100));
+        notes.add(new NoteText("F", "F.wav", 600, 100));
+        notes.add(new NoteText("G", "G.wav", 700, 100));
     }
 
+    // Draw all notes as text
     public void draw(Graphics2D g) {
-        for (Note n : notes) {
+        g.setFont(new Font("Arial", Font.BOLD, 32));
+        g.setColor(Color.WHITE);
+
+        for (NoteText n : notes) {
             n.draw(g);
         }
     }
 
+    // Collision with bullet
     public void checkBulletCollision(Bullet bullet) {
         Rectangle bulletBox = bullet.getBounds();
 
         for (int i = 0; i < notes.size(); i++) {
-            Note n = notes.get(i);
+            NoteText n = notes.get(i);
 
             if (bulletBox.intersects(n.getBounds())) {
                 n.playSound();
