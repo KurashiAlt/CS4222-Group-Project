@@ -66,7 +66,10 @@ public class GameMain {
         JButton tutorialBtn = makeStyledButton("Tutorial");
         JButton quitBtn = makeStyledButton("Quit");
 
-        startBtn.addActionListener(e -> switchPanel(DrawingSystem.GetGameMenu()));
+        startBtn.addActionListener(e -> {
+            Program.isStalled = false;
+            switchPanel(DrawingSystem.GetGameMenu());
+        });
         tutorialBtn.addActionListener(e -> showTutorial());
         quitBtn.addActionListener(e -> Program.isRunning = false);
 

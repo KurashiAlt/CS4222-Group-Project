@@ -46,7 +46,7 @@ public class Program
     }
     
     static Boolean isRunning = true;
-    static Boolean isStalled = false;
+    public static Boolean isStalled = true;
     static long lastTime;
     
     public static void KillGame() {
