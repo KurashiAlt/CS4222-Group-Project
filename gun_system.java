@@ -15,8 +15,6 @@ public class gun_system
 
     public static void _start(){
         SpawnGun();
-        System.out.println(weapon.getPosition().x);
-        System.out.println(weapon.getPosition().y);
     }
 
     public static void _process(double delta){
