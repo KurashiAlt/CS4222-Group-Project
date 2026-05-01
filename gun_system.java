@@ -4,8 +4,8 @@ public class gun_system
 {
     private static gun weapon;
     private static ArrayList<Bullet> bullets = new ArrayList<>();
-    private static final int SCREEN_WIDTH = 800;
-    private static final int SCREEN_HEIGHT = 600;
+    private static final int SCREEN_WIDTH = 1200;
+    private static final int SCREEN_HEIGHT = 700;
     private static final int GUN_HEIGHT = 90;
     
     public static void SpawnGun(){

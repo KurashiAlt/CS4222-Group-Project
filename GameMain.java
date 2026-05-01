@@ -104,7 +104,7 @@ public class GameMain {
             "AIM\n" +
             "• Hit the letters (notes) to play the instrument\n" +
             "• Hit the notes to avoid dying\n" +
-            "• Move up and down to change octaves\n"
+            "• The octave of the notes depends on how high up they are when killed\n"
         );
 
         JButton backBtn = makeStyledButton("Back");

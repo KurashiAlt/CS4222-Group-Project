@@ -5,7 +5,7 @@ public class gun
     public gun(int screenWidth, int screenHeight, int gunHeight)
     {
         pos = new Vector2(screenWidth / 2, screenHeight - gunHeight);
-        speed = 300;
+        speed = 500;
     }
     
     public void Move(Vector2 dir, double delta, int screenWidth, int screenHeight, int gunHeight)
