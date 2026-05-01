@@ -11,6 +11,12 @@ public class EnemySystem {
         for (int i = enemies.size() - 1; i >= 0; i--) {
             Enemy enemy = enemies.get(i);
             enemy.update(delta);
+            
+            if (enemy.getPosition().y >= 600){
+                SoundEffects.playEnemyNoise();
+                DrawingSystem.DisconnectEnemy(enemy.getPosition());
+                enemies.remove(i);
+            }
 
             if (!enemy.isAlive()) {
                 DrawingSystem.DisconnectEnemy(enemy.getPosition());
